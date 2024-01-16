@@ -26,6 +26,10 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
+    print(1000000000000000-5)
+    print(9999999999999995)
+    print(-999999999999999+1)
+    print(-999999999999998)
     # test.func1();
     # money = 5000
     # # func2()
@@ -79,7 +83,7 @@ if __name__ == '__main__':
     # list.append(l)
     # list.append(m)
     # list.append(n)
-    test3.func1()
+    # test3.func1()
 
 
 

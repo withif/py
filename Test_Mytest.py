@@ -38,8 +38,22 @@ class TestCalc:
         res=result_dict.get("a")+result_dict.get("b")
         assert res==result_dict.get("c")
 
-    @pytest.mark.parametrize("a,b,c",data)
-    def test_Add2(self,a,b,c):
-        sun=a+b
-        c=c
-        assert c==sun
+    @pytest.mark.parametrize("data1",[{"a":1,"b":2,"c":3},{"a":4,"b":2,"c":6}])
+    def test_Add2(self,data1):
+
+        a=data1["a"]
+        b = data1["b"]
+        c=data1["c"]
+        assert a+b==c
+
+    @pytest.mark.parametrize('a,b,c', [(1,2,3),(4,5,9)])
+    def test_Add3(self, a,b,c):
+        assert a+b==c
+
+
+    f = open(file="data1.yaml", mode="r", encoding="utf-8")
+    data1 = yaml.load(f, Loader=yaml.SafeLoader)
+    @pytest.mark.parametrize('a,b,c',data1)
+    def test_Add3(self, a, b, c):
+
+        assert a + b == c
