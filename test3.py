@@ -1,7 +1,39 @@
 import time
 
 # 需求：用户登录度小满家庭记账系统（管理员账户：admin/123456,普通用户:lisi/123456），若满足三次之内登录成功,进度进入家庭记账界面。若管理登录成功，可对用户的日常理财流程进行打印
-def func1(list):
+def func1():
+    a = zhangwu(1, "吃饭支出", "交通银行", 247.0, "2016-03-02", "家庭聚餐")
+    b = zhangwu(2, "工资收入", "现金", 12345.0, "2016-03-02", "开工资了")
+    c = zhangwu(3, "服装支出", "现金", 1998.0, "2016-03-02", "买衣服")
+    d = zhangwu(4, "吃饭支出", "现金", 325.0, "2016-03-02", "朋友聚餐")
+    e = zhangwu(5, "股票收入", "工商银行", 8000.0, "2016-03-02", "股票大涨")
+    f = zhangwu(6, "股票收入", "工商银行", 5000.0, "2016-03-02", "股票大涨")
+    g = zhangwu(7, "工资收入", "交通银行", 5000.0, "2016-03-02", "开工资了")
+    h = zhangwu(8, "礼金支出", "现金", 5000.0, "2016-03-02", "朋友结婚")
+    i = zhangwu(9, "其他支出", "现金", 1560.0, "2016-03-02", "丢钱了")
+    j = zhangwu(10, "交通支出", "交通银行", 2300.0, "2016-03-02", "油价上涨")
+    k = zhangwu(11, "吃饭支出", "工商银行", 1000.0, "2016-03-02", "吃饭")
+    l = zhangwu(12, "工资收入", "现金", 1000.0, "2016-03-02", "开资")
+    m = zhangwu(13, "交通支出", "现金", 2000.0, "2016-03-02", "机票好贵")
+    n = zhangwu(14, "工资收入", "现金", 5000.0, "2016-03-02", "又开资")
+    list = []
+    list.append(a)
+    list.append(b)
+    list.append(c)
+    list.append(d)
+    list.append(e)
+    list.append(f)
+    list.append(g)
+    list.append(h)
+    list.append(i)
+    list.append(j)
+    list.append(k)
+    list.append(l)
+    list.append(m)
+    list.append(n)
+
+
+
     m=[]
     n=[]
     for i in list:
@@ -125,3 +157,4 @@ class zhangwu:
         self.money=money
         self.time=time
         self.instruction=instruction
+

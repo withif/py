@@ -4,6 +4,7 @@ import random
 import pymysql
 import xlrd
 
+import test3
 from test4 import user, start
 from Tools.demo.spreadsheet import ljust
 import pandas as pd
@@ -78,7 +79,7 @@ if __name__ == '__main__':
     # list.append(l)
     # list.append(m)
     # list.append(n)
-    # func1(list)
+    test3.func1()
 
 
 

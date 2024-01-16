@@ -227,11 +227,12 @@ def start(list):
 
 
 class testClass(TestCase):
-    addr1="中国北京市昌平区88号"
-    user1=user(10000000,"张三","123456",addr1,1000000,"中国工商银行的昌平支行")
-    user2 = user(10000001, "李四", "123456", addr1, 2000000, "中国工商银行的昌平支行")
-    list=[user1,user2]
-    start(list);
+    def test_bank(self):
+        addr1 = "中国北京市昌平区88号"
+        user1 = user(10000000, "张三", "123456", addr1, 1000000, "中国工商银行的昌平支行")
+        user2 = user(10000001, "李四", "123456", addr1, 2000000, "中国工商银行的昌平支行")
+        list = [user1, user2]
+        start(list);
 
 
 

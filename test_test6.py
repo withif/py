@@ -1,9 +1,10 @@
+import unittest
 from unittest import TestCase
 
 from test6 import air_conditioner, human, student, car, notebook, monkey
 
 # 单元测试
-class Test(TestCase):
+class myTest(unittest.TestCase):
     def test_air_c(self):
         a=air_conditioner()
         a.setBrand("小米")
@@ -48,6 +49,10 @@ class Test(TestCase):
         m=monkey("孙悟空","雄性","black",50)
         m.makefire("木材")
         m.study("语文","数学","英语")
+
+if __name__ == '__main__':
+    unittest.main()
+
 
 
 
