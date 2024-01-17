@@ -3,7 +3,7 @@ import pytest
 
 
 class Test_Calc():
-    data = pd.read_excel('C:/Users/36017/Desktop/1.xlsx')
+    data = pd.read_excel('1.xlsx')
     @pytest.mark.parametrize("id,a,b,c,real_result,passOrNot,design_basis,test_point",data.values)
     def test_add(self,id,a,b,c,real_result,passOrNot,design_basis,test_point):
         way = test_point[0:2]

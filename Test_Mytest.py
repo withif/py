@@ -55,5 +55,4 @@ class TestCalc:
     data1 = yaml.load(f, Loader=yaml.SafeLoader)
     @pytest.mark.parametrize('a,b,c',data1)
     def test_Add3(self, a, b, c):
-
         assert a + b == c
