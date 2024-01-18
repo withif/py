@@ -3,7 +3,7 @@ import datetime
 import random
 import pymysql
 import xlrd
-
+import  pandas as pd
 import test3
 from test4 import user, start
 from Tools.demo.spreadsheet import ljust
@@ -26,10 +26,7 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
-    print(1000000000000000-5)
-    print(9999999999999995)
-    print(-999999999999999+1)
-    print(-999999999999998)
+
     # test.func1();
     # money = 5000
     # # func2()
@@ -243,7 +240,10 @@ if __name__ == '__main__':
 # for i in res:
 #     print(i.id)
 
-
+file=    open("C:/Users/36017/Desktop/qq.txt","r",encoding="utf-8")
+content=    file.read()
+file.close()
+print(content)
 
 
 
