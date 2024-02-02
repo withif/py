@@ -98,7 +98,7 @@ def get_loan_id(userid):
         password='root',  # 用户名
         charset='utf8',  # 密码
         port=3306,  # 端口
-        db='finance',  # 数据库名称
+        db='finance'  # 数据库名称
     )
     c = conn.cursor()
     c.execute(

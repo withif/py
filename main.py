@@ -4,6 +4,8 @@ import random
 import pymysql
 import xlrd
 import  pandas as pd
+from faker import Faker
+
 import test3
 from test4 import user, start
 from Tools.demo.spreadsheet import ljust
@@ -240,13 +242,13 @@ if __name__ == '__main__':
 # for i in res:
 #     print(i.id)
 
-file=    open("C:/Users/36017/Desktop/qq.txt","r",encoding="utf-8")
-content=    file.read()
-file.close()
-print(content)
+# file=    open("C:/Users/36017/Desktop/qq.txt","r",encoding="utf-8")
+# content=    file.read()
+# file.close()
+# print(content)
 
-
-
+a=Faker("zh_CN")
+print(a.name())
 
 
 

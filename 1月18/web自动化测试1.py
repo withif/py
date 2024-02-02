@@ -2,6 +2,7 @@ from telnetlib import EC
 import pandas as pd
 from selenium.common import TimeoutException, StaleElementReferenceException
 from selenium.webdriver import ActionChains
+from selenium.webdriver.chrome.options import Options
 
 import gongnen
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,7 +18,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import shujuku
 class Test_Web:
 
-    data1 = pd.read_excel("C:/Users/36017/Desktop/2.xlsx", sheet_name='Sheet1')
+    data1 = pd.read_excel("2.xlsx", sheet_name='Sheet1')
 
 
     # @pytest.fixture(params=['firefox', 'chrome'])
@@ -30,14 +31,21 @@ class Test_Web:
     #     else:
     #         print("错误")
     #         return
+    #     driver.maximize_window()
     #     yield driver
     #
     #     driver.quit()
 
     @pytest.fixture
     def browser(self):
-        driver = webdriver.Chrome()
+        driver_options=    Options()
+        driver_options.add_argument("--ignore-certificate-errors")      #处理“不受信任的证书”的问题
+        driver = webdriver.Chrome(driver_options)
+        
+        # driver = webdriver.Chrome()
         driver.maximize_window()
+        # driver.switch_to.alert.accept()         #点击弹窗确定
+        # driver.switch_to.alert.dismiss()        #点击弹窗取消
         yield driver
         driver.quit()
 
@@ -49,7 +57,6 @@ class Test_Web:
         url = 'http://127.0.0.1:90'
         username =uname
         password = pwd
-        browser = browser
         gongnen.entry_Prerequisite(username, password, browser, url)
         if "个人理财系统" in browser.page_source or "后台管理系统" in browser.page_source:
             print("登陆成功")
@@ -60,8 +67,10 @@ class Test_Web:
         # assert "个人理财系统" in browser.page_source
         # browser.quit()
         time.sleep(2)
+        # browser.set_page_load_timeout(10)
+        # browser.implicitly_wait(10)
 
-    data2 = pd.read_excel("C:/Users/36017/Desktop/2.xlsx", sheet_name='Sheet2')
+    data2 = pd.read_excel("2.xlsx", sheet_name='Sheet2')
     # 注册
     @pytest.mark.parametrize("id,func,uname,pwd,pwd2,preresult,result", data2.values)
     def test_registration(self,browser,id,func,uname,pwd,pwd2,preresult,result):        #http://localhost:90/toregister.html
@@ -94,7 +103,7 @@ class Test_Web:
             print("注册失败")
             assert len(result2) == len(result1)   #正确写法
 
-    data3 = pd.read_excel("C:/Users/36017/Desktop/2.xlsx", sheet_name='Sheet3')
+    data3 = pd.read_excel("2.xlsx", sheet_name='Sheet3')
     # 开卡
     @pytest.mark.parametrize("id,func,uname,pwd,bankname,banknum,cardtype,preresult,result", data3.values)
     def test_Bank_card_management(self,browser,id,func,uname,pwd,bankname,banknum,cardtype,preresult,result):
@@ -160,7 +169,7 @@ class Test_Web:
             assert len(result2)-1==len(result1)
 
 
-    data4 = pd.read_excel("C:/Users/36017/Desktop/2.xlsx", sheet_name='Sheet4')
+    data4 = pd.read_excel("2.xlsx", sheet_name='Sheet4')
     # 删除卡
     @pytest.mark.parametrize("id,func,uname,pwd,exec,preresult,result", data4.values)
     def test_Bank_card_delete(self,browser,id,func,uname,pwd,exec,preresult,result):
@@ -211,7 +220,7 @@ class Test_Web:
             assert len(result2)+1==len(result1)
         # browser.quit()
 
-    data5 = pd.read_excel("C:/Users/36017/Desktop/2.xlsx", sheet_name='Sheet5')
+    data5 = pd.read_excel("2.xlsx", sheet_name='Sheet5')
     #卡编辑
     @pytest.mark.parametrize("id,func,uname,pwd,bankname,banknum,banktype,preresult,result", data5.values)
     def test_Bank_card_editor(self,browser,id,func,uname,pwd,bankname,banknum,banktype,preresult,result):
@@ -297,7 +306,7 @@ class Test_Web:
 
 
 
-    data6 = pd.read_excel("C:/Users/36017/Desktop/2.xlsx", sheet_name='Sheet6')
+    data6 = pd.read_excel("2.xlsx", sheet_name='Sheet6')
     # 买入基金理财
 
     @pytest.mark.parametrize("id,func,uname,pwd,way,cardpwd,productname,preresult,result", data6.values)
@@ -354,7 +363,7 @@ class Test_Web:
 
 
 
-    data7 = pd.read_excel("C:/Users/36017/Desktop/2.xlsx", sheet_name='Sheet7')
+    data7 = pd.read_excel("2.xlsx", sheet_name='Sheet7')
     # 申请网贷用例
     @pytest.mark.parametrize("id,func,uname,pwd,money1,time1,audit,succeed,preresult,result", data7.values)
     def test_secure_online_loan(self,browser,id,func,uname,pwd,money1,time1,audit,succeed,preresult,result):
