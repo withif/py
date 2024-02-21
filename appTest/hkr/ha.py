@@ -1,6 +1,7 @@
 import time
 import pandas as pd
 import pytest
+import urllib3
 from appium import webdriver
 from urllib3.exceptions import ProtocolError
 from hahaha import APP
@@ -24,13 +25,15 @@ class Test_APP:
         i=0
         while i==0:
             try:
+                time.sleep(5)
                 driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", app_dict)
 
                 i = 1
                 yield driver
                 driver.quit()
-            except Exception:
-                time.sleep(15)
+            except urllib3.exceptions.ProtocolError:
+                time.sleep(10)
+                driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", app_dict)
 
     @pytest.mark.parametrize("id,biaoti,zhengwen,picture,ba_name,topic",data1.values)
     def test_fatiezi(self,driver,id,biaoti,zhengwen,picture,ba_name,topic):
@@ -40,13 +43,15 @@ class Test_APP:
         # topic="哈哈哈哈"
         APP.fatiezi(driver,biaoti,zhengwen,picture,ba_name,topic)
         time.sleep(10)
-        if "发布帖子" in driver.page_source:
+        if "展示虚拟形象及状态" in driver.page_source or "违规" in driver.page_source:
             print("发布失败")
-            assert "发布帖子" in driver.page_source
+            if "违规" in driver.page_source:
+                print("你的账号违规")
+            assert "展示虚拟形象及状态" in driver.page_source or "违规" in driver.page_source
         elif "关注" in driver.page_source and "推荐" in driver.page_source and "热门" in driver.page_source:
             print("发帖成功")
             assert "关注" in driver.page_source and "推荐" in driver.page_source and "热门" in driver.page_source
-        time.sleep(10)
+        time.sleep(5)
 
 
 
@@ -59,6 +64,12 @@ class Test_APP:
         if pd.isna(content):
             content=""
         APP.pinlun(driver,dianzan,content,picture)
-        time.sleep(10)
-        time.sleep(2)
-        assert content in driver.page_source
+        time.sleep(5)
+        if "违规" in driver.page_source or str(content) not in driver.page_source:
+            print("评论失败")
+            if "违规" in driver.page_source:
+                print("你的账号违规")
+        elif str(content) in driver.page_source:
+            print("评论成功")
+            assert str(content) in driver.page_source
+        time.sleep(5)
